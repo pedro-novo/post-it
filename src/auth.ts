@@ -3,8 +3,8 @@ import Github from "next-auth/providers/github";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "./db";
 
-const GITHUB_CLIEND_ID = process.env.GITHUB_CLIEND_ID;
-const GITHUB_CLIEND_SECRET = process.env.GITHUB_CLIEND_SECRET;
+const GITHUB_CLIEND_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIEND_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 if (!GITHUB_CLIEND_ID || !GITHUB_CLIEND_SECRET) {
   throw new Error("Missing github oauth credentials");
