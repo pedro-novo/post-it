@@ -9,6 +9,20 @@ export type PostItemType = Post & {
 
 // export type PostItemType = Awaited<ReturnType<typeof fetchPostsByTopicSlug>>[number];
 
+export function fetchPostsBySearchTerm(term: string): Promise<PostItemType[]> {
+  return db.post.findMany({
+    include: {
+      topic: { select: { slug: true } },
+      user: { select: { name: true, image: true } },
+      _count: { select: { comments: true } },
+    },
+    where: {
+      title: { contains: term },
+      content: { contains: term },
+    },
+  });
+}
+
 export function fetchPostsByTopicSlug(slug: string): Promise<PostItemType[]> {
   return db.post.findMany({
     where: { topic: { slug } },
